@@ -6,7 +6,81 @@ import { Badge } from "@/components/ui/badge";
 import {
   Mail, Phone, MapPin, Linkedin, Download, ArrowRight, Code2, Layers,
   Zap, GitBranch, Briefcase, GraduationCap, Award, Languages, Github,
+  ExternalLink, Folder, CheckCircle2,
 } from "lucide-react";
+
+type Project = {
+  title: string;
+  role: string;
+  period: string;
+  description: string;
+  highlights: string[];
+  stack: string[];
+  demo?: string;
+  github?: string;
+  featured?: boolean;
+};
+
+const projects: Project[] = [
+  {
+    title: "BRIAPI Dashboard",
+    role: "Frontend Developer · PT Bank Rakyat Indonesia",
+    period: "Sep 2022 – Sep 2025",
+    description:
+      "Dashboard web internal untuk produk digital perbankan BRI yang digunakan oleh tim partner & internal untuk monitoring transaksi, pengelolaan API key, serta laporan finansial real-time.",
+    highlights: [
+      "Implementasi UI sesuai design system & Figma dengan akurasi visual tinggi",
+      "State management kompleks menggunakan Redux & Redux Toolkit",
+      "Integrasi RESTful API dengan error handling yang stabil",
+      "Optimasi performance: code splitting, reusable components, lazy loading",
+      "CI/CD pipeline via Jenkins, kolaborasi lintas tim (BE, QA, DevOps)",
+    ],
+    stack: ["Next.js", "React.js", "TypeScript", "Redux Toolkit", "RESTful API", "Jenkins"],
+    featured: true,
+  },
+  {
+    title: "Neo Production",
+    role: "Frontend Developer",
+    period: "Aug 2024 – Sep 2025",
+    description:
+      "Situs resmi perusahaan event organizer & paket wisata di Indonesia. Website company profile yang menampilkan layanan, portofolio event, serta katalog paket wisata dengan fokus pada konversi & SEO.",
+    highlights: [
+      "Desain responsif mobile-first untuk pengalaman optimal di semua device",
+      "Optimasi SEO on-page dengan meta tags dinamis & structured data",
+      "Page speed tinggi via image optimization & static generation",
+      "Komponen reusable untuk maintenance & scalability jangka panjang",
+    ],
+    stack: ["Next.js", "React.js", "Tailwind CSS", "SEO", "Responsive Design"],
+    demo: "https://neoproduction.id",
+    featured: true,
+  },
+  {
+    title: "Internal CMS — Drupal",
+    role: "Web Developer",
+    period: "2023 – 2024",
+    description:
+      "Pengembangan & kustomisasi Content Management System berbasis Drupal untuk kebutuhan publikasi internal perusahaan, termasuk modul custom & integrasi dengan sistem internal.",
+    highlights: [
+      "Custom module Drupal sesuai workflow internal",
+      "Integrasi dengan layanan backend internal",
+      "Theme kustom yang konsisten dengan brand guideline",
+    ],
+    stack: ["Drupal", "PHP", "Twig", "MySQL"],
+  },
+  {
+    title: "Backend Service — Golang",
+    role: "Backend Developer",
+    period: "2023 – 2025",
+    description:
+      "Pengembangan layanan backend internal menggunakan Golang dengan framework Gin & Fiber untuk mendukung kebutuhan microservice & API internal perusahaan.",
+    highlights: [
+      "Desain RESTful API performant dengan Gin & Fiber",
+      "Integrasi database & validasi request yang aman",
+      "Unit testing untuk menjamin kualitas service",
+    ],
+    stack: ["Golang", "Gin", "Fiber", "REST API", "PostgreSQL"],
+  },
+];
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -216,19 +290,13 @@ function Portfolio() {
       <section id="projects" className="py-24 px-6">
         <div className="max-w-6xl mx-auto">
           <SectionHeader eyebrow="Projects" title="Selected work" />
+          <p className="text-center text-muted-foreground mt-4 max-w-2xl mx-auto">
+            Beberapa proyek pilihan yang merepresentasikan perjalanan saya sebagai Frontend Developer di lingkungan enterprise & product.
+          </p>
           <div className="grid md:grid-cols-2 gap-6 mt-12">
-            <ProjectCard
-              title="BRIAPI Dashboard"
-              period="Sep 2022 – Sep 2025"
-              description="Dashboard web internal untuk produk digital perbankan BRI. Next.js + React.js, Redux Toolkit, integrasi RESTful API, CI/CD Jenkins."
-              tags={["Next.js", "React", "Redux Toolkit", "TypeScript"]}
-            />
-            <ProjectCard
-              title="Neo Production"
-              period="Aug 2024 – Sep 2025"
-              description="Situs resmi perusahaan event organizer paket wisata di Indonesia. Website company profile responsif, user-friendly, dan SEO-friendly."
-              tags={["Next.js", "React", "Responsive", "SEO"]}
-            />
+            {projects.map((p) => (
+              <ProjectCard key={p.title} project={p} />
+            ))}
           </div>
         </div>
       </section>
@@ -316,21 +384,67 @@ function FeatureCard({ icon, title, text }: { icon: React.ReactNode; title: stri
   );
 }
 
-function ProjectCard({
-  title, period, description, tags,
-}: { title: string; period: string; description: string; tags: string[] }) {
+function ProjectCard({ project }: { project: Project }) {
+  const { title, role, period, description, highlights, stack, demo, github, featured } = project;
   return (
-    <Card className="p-7 border-border/60 hover:border-primary/40 transition-all hover:-translate-y-1 group" style={{ background: "var(--gradient-card)" }}>
-      <div className="flex justify-between items-start mb-3">
-        <h3 className="font-display font-bold text-xl group-hover:text-primary transition-colors">{title}</h3>
-        <span className="text-xs text-muted-foreground">{period}</span>
+    <Card
+      className="p-7 border-border/60 hover:border-primary/40 transition-all hover:-translate-y-1 group flex flex-col relative overflow-hidden"
+      style={{ background: "var(--gradient-card)" }}
+    >
+      {featured && (
+        <Badge variant="secondary" className="absolute top-4 right-4 rounded-full bg-primary/15 border border-primary/30 text-primary text-[10px] uppercase tracking-wider">
+          Featured
+        </Badge>
+      )}
+      <div className="flex items-center gap-3 mb-4">
+        <div className="size-10 rounded-xl bg-primary/10 border border-primary/20 grid place-items-center text-primary">
+          <Folder className="size-5" />
+        </div>
+        <div>
+          <h3 className="font-display font-bold text-xl group-hover:text-primary transition-colors leading-tight">
+            {title}
+          </h3>
+          <p className="text-xs text-muted-foreground mt-0.5">{role}</p>
+        </div>
       </div>
-      <p className="text-sm text-muted-foreground mb-5 leading-relaxed">{description}</p>
-      <div className="flex flex-wrap gap-2">
-        {tags.map((t) => (
-          <Badge key={t} variant="secondary" className="rounded-full bg-primary/10 border border-primary/20">{t}</Badge>
+      <p className="text-xs text-muted-foreground mb-3">{period}</p>
+      <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{description}</p>
+
+      <ul className="space-y-2 mb-5">
+        {highlights.map((h) => (
+          <li key={h} className="flex gap-2 text-sm text-muted-foreground">
+            <CheckCircle2 className="size-4 text-primary shrink-0 mt-0.5" />
+            <span>{h}</span>
+          </li>
+        ))}
+      </ul>
+
+      <div className="flex flex-wrap gap-2 mb-5 mt-auto">
+        {stack.map((t) => (
+          <Badge key={t} variant="secondary" className="rounded-full bg-primary/10 border border-primary/20 text-xs">
+            {t}
+          </Badge>
         ))}
       </div>
+
+      {(demo || github) && (
+        <div className="flex flex-wrap gap-2 pt-4 border-t border-border/60">
+          {demo && (
+            <Button asChild size="sm" variant="outline" className="rounded-full">
+              <a href={demo} target="_blank" rel="noopener noreferrer">
+                <ExternalLink className="size-3.5" /> Live Demo
+              </a>
+            </Button>
+          )}
+          {github && (
+            <Button asChild size="sm" variant="outline" className="rounded-full">
+              <a href={github} target="_blank" rel="noopener noreferrer">
+                <Github className="size-3.5" /> Source
+              </a>
+            </Button>
+          )}
+        </div>
+      )}
     </Card>
   );
 }
