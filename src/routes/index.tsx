@@ -4,6 +4,7 @@ import profileImg from "@/assets/profile.jpeg";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import {
   Mail, Phone, MapPin, Linkedin, Download, ArrowRight, Code2, Layers,
   Zap, GitBranch, Briefcase, GraduationCap, Award, Languages, Github,
