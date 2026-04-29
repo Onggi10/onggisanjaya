@@ -299,8 +299,8 @@ function Portfolio() {
             </h3>
             <div className="space-y-5">
               <div>
-                <p className="font-semibold">SMK Bhakti Insani Bogor</p>
-                <p className="text-sm text-muted-foreground">Rekayasa Perangkat Lunak · 2016 – 2019</p>
+                <p className="font-semibold">Universitas Terbuka</p>
+                <p className="text-sm text-muted-foreground">Teknologi Informasi · 2024 – 2025</p>
               </div>
               <div>
                 <p className="font-semibold">Cronos Studio Indonesia</p>
