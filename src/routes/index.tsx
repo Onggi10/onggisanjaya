@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import {
   Mail, Phone, MapPin, Linkedin, Download, ArrowRight, Code2, Layers,
   Zap, GitBranch, Briefcase, GraduationCap, Award, Languages, Github,
-  ExternalLink, Folder, CheckCircle2,
+  ExternalLink, Folder, CheckCircle2, MessageCircle,
 } from "lucide-react";
 
 type Project = {
