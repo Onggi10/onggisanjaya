@@ -384,21 +384,67 @@ function FeatureCard({ icon, title, text }: { icon: React.ReactNode; title: stri
   );
 }
 
-function ProjectCard({
-  title, period, description, tags,
-}: { title: string; period: string; description: string; tags: string[] }) {
+function ProjectCard({ project }: { project: Project }) {
+  const { title, role, period, description, highlights, stack, demo, github, featured } = project;
   return (
-    <Card className="p-7 border-border/60 hover:border-primary/40 transition-all hover:-translate-y-1 group" style={{ background: "var(--gradient-card)" }}>
-      <div className="flex justify-between items-start mb-3">
-        <h3 className="font-display font-bold text-xl group-hover:text-primary transition-colors">{title}</h3>
-        <span className="text-xs text-muted-foreground">{period}</span>
+    <Card
+      className="p-7 border-border/60 hover:border-primary/40 transition-all hover:-translate-y-1 group flex flex-col relative overflow-hidden"
+      style={{ background: "var(--gradient-card)" }}
+    >
+      {featured && (
+        <Badge variant="secondary" className="absolute top-4 right-4 rounded-full bg-primary/15 border border-primary/30 text-primary text-[10px] uppercase tracking-wider">
+          Featured
+        </Badge>
+      )}
+      <div className="flex items-center gap-3 mb-4">
+        <div className="size-10 rounded-xl bg-primary/10 border border-primary/20 grid place-items-center text-primary">
+          <Folder className="size-5" />
+        </div>
+        <div>
+          <h3 className="font-display font-bold text-xl group-hover:text-primary transition-colors leading-tight">
+            {title}
+          </h3>
+          <p className="text-xs text-muted-foreground mt-0.5">{role}</p>
+        </div>
       </div>
-      <p className="text-sm text-muted-foreground mb-5 leading-relaxed">{description}</p>
-      <div className="flex flex-wrap gap-2">
-        {tags.map((t) => (
-          <Badge key={t} variant="secondary" className="rounded-full bg-primary/10 border border-primary/20">{t}</Badge>
+      <p className="text-xs text-muted-foreground mb-3">{period}</p>
+      <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{description}</p>
+
+      <ul className="space-y-2 mb-5">
+        {highlights.map((h) => (
+          <li key={h} className="flex gap-2 text-sm text-muted-foreground">
+            <CheckCircle2 className="size-4 text-primary shrink-0 mt-0.5" />
+            <span>{h}</span>
+          </li>
+        ))}
+      </ul>
+
+      <div className="flex flex-wrap gap-2 mb-5 mt-auto">
+        {stack.map((t) => (
+          <Badge key={t} variant="secondary" className="rounded-full bg-primary/10 border border-primary/20 text-xs">
+            {t}
+          </Badge>
         ))}
       </div>
+
+      {(demo || github) && (
+        <div className="flex flex-wrap gap-2 pt-4 border-t border-border/60">
+          {demo && (
+            <Button asChild size="sm" variant="outline" className="rounded-full">
+              <a href={demo} target="_blank" rel="noopener noreferrer">
+                <ExternalLink className="size-3.5" /> Live Demo
+              </a>
+            </Button>
+          )}
+          {github && (
+            <Button asChild size="sm" variant="outline" className="rounded-full">
+              <a href={github} target="_blank" rel="noopener noreferrer">
+                <Github className="size-3.5" /> Source
+              </a>
+            </Button>
+          )}
+        </div>
+      )}
     </Card>
   );
 }
