@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import {
   Mail, Phone, MapPin, Linkedin, Download, ArrowRight, Code2, Layers,
   Zap, GitBranch, Briefcase, GraduationCap, Award, Languages, Github,
-  ExternalLink, Folder, CheckCircle2,
+  ExternalLink, Folder, CheckCircle2, MessageCircle,
 } from "lucide-react";
 
 type Project = {
@@ -366,23 +366,21 @@ function WhatsAppFab() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat via WhatsApp"
-      className="group fixed bottom-6 right-6 z-50 flex items-center gap-2"
+      className="group fixed bottom-6 right-6 z-50 flex items-center gap-3"
     >
-      <span className="hidden sm:inline-block px-3 py-2 rounded-full text-sm font-medium bg-card border border-border/60 text-foreground shadow-lg opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all">
-        Chat via WhatsApp
-      </span>
+      <span className="hidden sm:flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium bg-card/90 backdrop-blur border border-primary/30 text-foreground shadow-[var(--shadow-elegant)] opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+          <span className="size-2 rounded-full bg-primary animate-pulse" />
+          Chat via WhatsApp
+        </span>
       <span
-        className="relative flex items-center justify-center size-14 rounded-full text-white shadow-[var(--shadow-glow)] hover:scale-110 transition-transform"
-        style={{ background: "linear-gradient(135deg, #25D366, #128C7E)" }}
+        className="relative flex items-center justify-center size-14 rounded-full text-primary-foreground shadow-[var(--shadow-glow)] hover:scale-110 active:scale-95 transition-transform border border-primary/40"
+        style={{ background: "var(--gradient-primary)" }}
       >
-        <span className="absolute inset-0 rounded-full bg-[#25D366] opacity-60 animate-ping" />
-        <svg
-          viewBox="0 0 32 32"
-          className="relative size-7 fill-current"
-          aria-hidden="true"
-        >
-          <path d="M19.11 17.205c-.372 0-1.088 1.39-1.518 1.39a.63.63 0 0 1-.315-.1c-.802-.402-1.504-.817-2.163-1.447-.545-.516-1.146-1.29-1.46-1.963a.426.426 0 0 1-.073-.215c0-.33.99-.945.99-1.49 0-.143-.73-2.09-.832-2.335-.143-.372-.214-.487-.6-.487-.187 0-.36-.043-.53-.043-.302 0-.53.115-.746.315-.688.645-1.032 1.318-1.06 2.264v.114c-.015.99.472 1.977 1.017 2.78 1.23 1.82 2.506 3.41 4.554 4.34.616.287 2.035.93 2.722.93.474 0 1.39-.143 1.79-.444.546-.43.66-1.085.66-1.683 0-.215-.043-.43-.158-.616-.214-.358-1.59-.715-2.005-.857zM16.5 7C11.804 7 8 10.804 8 15.5c0 1.605.45 3.097 1.226 4.371L8 24l4.331-1.215A8.46 8.46 0 0 0 16.5 24c4.696 0 8.5-3.804 8.5-8.5S21.196 7 16.5 7z" />
-        </svg>
+        <span
+          className="absolute inset-0 rounded-full opacity-50 animate-ping"
+          style={{ background: "var(--gradient-primary)" }}
+        />
+        <MessageCircle className="relative size-6" strokeWidth={2.25} />
       </span>
     </a>
   );
