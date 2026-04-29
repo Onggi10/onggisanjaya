@@ -287,20 +287,7 @@ function Portfolio() {
         </div>
       </section>
 
-      {/* PROJECTS */}
-      <section id="projects" className="py-24 px-6">
-        <div className="max-w-6xl mx-auto">
-          <SectionHeader eyebrow="Projects" title="Selected work" />
-          <p className="text-center text-muted-foreground mt-4 max-w-2xl mx-auto">
-            Beberapa proyek pilihan yang merepresentasikan perjalanan saya sebagai Frontend Developer di lingkungan enterprise & product.
-          </p>
-          <div className="grid md:grid-cols-2 gap-6 mt-12">
-            {projects.map((p) => (
-              <ProjectCard key={p.title} project={p} />
-            ))}
-          </div>
-        </div>
-      </section>
+      <ProjectsSection />
 
       {/* EDUCATION + CERTS */}
       <section className="py-24 px-6">
