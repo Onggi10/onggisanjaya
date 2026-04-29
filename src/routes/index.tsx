@@ -355,34 +355,48 @@ function Portfolio() {
 
 function WhatsAppFab() {
   const phone = "6289531310890";
+  const displayPhone = "+62 895-3131-0890";
   const message = encodeURIComponent(
     "Halo Onggi, saya melihat website portofolio Anda dan tertarik untuk berdiskusi lebih lanjut.",
   );
   const href = `https://wa.me/${phone}?text=${message}`;
+  const ariaLabel = `Hubungi Onggi Sanjaya via WhatsApp di ${displayPhone} (membuka WhatsApp di tab baru)`;
 
   return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Chat via WhatsApp"
-      className="group fixed bottom-6 right-6 z-50 flex items-center gap-3"
-    >
-      <span className="hidden sm:flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium bg-card/90 backdrop-blur border border-primary/30 text-foreground shadow-[var(--shadow-elegant)] opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
-          <span className="size-2 rounded-full bg-primary animate-pulse" />
-          Chat via WhatsApp
-        </span>
-      <span
-        className="relative flex items-center justify-center size-14 rounded-full text-primary-foreground shadow-[var(--shadow-glow)] hover:scale-110 active:scale-95 transition-transform border border-primary/40"
-        style={{ background: "var(--gradient-primary)" }}
-      >
-        <span
-          className="absolute inset-0 rounded-full opacity-50 animate-ping"
-          style={{ background: "var(--gradient-primary)" }}
-        />
-        <MessageCircle className="relative size-6" strokeWidth={2.25} />
-      </span>
-    </a>
+    <TooltipProvider delayDuration={200}>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={ariaLabel}
+            title={ariaLabel}
+            role="button"
+            className="group fixed bottom-6 right-6 z-50 flex items-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background motion-reduce:transition-none"
+          >
+            <span
+              aria-hidden="true"
+              className="relative flex items-center justify-center size-14 rounded-full text-primary-foreground shadow-[var(--shadow-glow)] hover:scale-110 active:scale-95 transition-transform border border-primary/40 motion-reduce:transform-none motion-reduce:transition-none"
+              style={{ background: "var(--gradient-primary)" }}
+            >
+              <span
+                className="absolute inset-0 rounded-full opacity-50 animate-ping motion-reduce:hidden"
+                style={{ background: "var(--gradient-primary)" }}
+              />
+              <MessageCircle className="relative size-6" strokeWidth={2.25} />
+            </span>
+            <span className="sr-only">{ariaLabel}</span>
+          </a>
+        </TooltipTrigger>
+        <TooltipContent side="left" sideOffset={12} className="max-w-xs">
+          <p className="font-medium">Chat via WhatsApp</p>
+          <p className="text-xs text-muted-foreground mt-0.5">
+            Kirim pesan langsung ke {displayPhone}. Biasanya membalas dalam beberapa jam.
+          </p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
   );
 }
 
