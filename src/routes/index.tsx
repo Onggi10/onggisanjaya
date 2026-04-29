@@ -290,19 +290,13 @@ function Portfolio() {
       <section id="projects" className="py-24 px-6">
         <div className="max-w-6xl mx-auto">
           <SectionHeader eyebrow="Projects" title="Selected work" />
+          <p className="text-center text-muted-foreground mt-4 max-w-2xl mx-auto">
+            Beberapa proyek pilihan yang merepresentasikan perjalanan saya sebagai Frontend Developer di lingkungan enterprise & product.
+          </p>
           <div className="grid md:grid-cols-2 gap-6 mt-12">
-            <ProjectCard
-              title="BRIAPI Dashboard"
-              period="Sep 2022 – Sep 2025"
-              description="Dashboard web internal untuk produk digital perbankan BRI. Next.js + React.js, Redux Toolkit, integrasi RESTful API, CI/CD Jenkins."
-              tags={["Next.js", "React", "Redux Toolkit", "TypeScript"]}
-            />
-            <ProjectCard
-              title="Neo Production"
-              period="Aug 2024 – Sep 2025"
-              description="Situs resmi perusahaan event organizer paket wisata di Indonesia. Website company profile responsif, user-friendly, dan SEO-friendly."
-              tags={["Next.js", "React", "Responsive", "SEO"]}
-            />
+            {projects.map((p) => (
+              <ProjectCard key={p.title} project={p} />
+            ))}
           </div>
         </div>
       </section>
