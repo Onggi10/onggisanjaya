@@ -53,11 +53,11 @@ const projects: Project[] = [
       "Komponen reusable untuk maintenance & scalability jangka panjang",
     ],
     stack: ["Next.js", "React.js", "Tailwind CSS", "SEO", "Responsive Design"],
-    demo: "https://neoproduction.id",
+    demo: "https://neoproduction.co.id",
     featured: true,
   },
   {
-    title: "Internal CMS — Drupal",
+    title: "Developers BRI",
     role: "Web Developer",
     period: "2023 – 2024",
     description:
@@ -68,6 +68,7 @@ const projects: Project[] = [
       "Theme kustom yang konsisten dengan brand guideline",
     ],
     stack: ["Drupal", "PHP", "Twig", "MySQL"],
+    demo: "https://developers.bri.co.id/id",
   },
   {
     title: "Backend Service — Golang",
@@ -126,7 +127,7 @@ function Portfolio() {
       <nav className="fixed top-0 inset-x-0 z-50 backdrop-blur-xl bg-background/60 border-b border-border/50">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <a href="#home" className="font-display font-bold text-lg">
-            Onggi<span className="text-primary">.</span>
+            <span className="text-primary">Onggi Sanjaya</span>
           </a>
           <div className="hidden md:flex items-center gap-8 text-sm text-muted-foreground">
             <a href="#about" className="hover:text-foreground transition-colors">About</a>
