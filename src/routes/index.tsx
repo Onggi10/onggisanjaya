@@ -372,6 +372,72 @@ function FeatureCard({ icon, title, text }: { icon: React.ReactNode; title: stri
   );
 }
 
+function ProjectsSection() {
+  const allTags = useMemo(() => {
+    const set = new Set<string>();
+    projects.forEach((p) => p.stack.forEach((s) => set.add(s)));
+    return Array.from(set).sort();
+  }, []);
+  const [active, setActive] = useState<string>("All");
+
+  const filtered = useMemo(
+    () => (active === "All" ? projects : projects.filter((p) => p.stack.includes(active))),
+    [active],
+  );
+
+  return (
+    <section id="projects" className="py-24 px-6">
+      <div className="max-w-6xl mx-auto">
+        <SectionHeader eyebrow="Projects" title="Selected work" />
+        <p className="text-center text-muted-foreground mt-4 max-w-2xl mx-auto">
+          Beberapa proyek pilihan yang merepresentasikan perjalanan saya sebagai Frontend Developer di lingkungan enterprise & product.
+        </p>
+
+        <div className="flex flex-wrap justify-center gap-2 mt-10" role="tablist" aria-label="Filter proyek berdasarkan teknologi">
+          {["All", ...allTags].map((tag) => {
+            const isActive = active === tag;
+            return (
+              <button
+                key={tag}
+                role="tab"
+                aria-selected={isActive}
+                onClick={() => setActive(tag)}
+                className={
+                  "rounded-full px-4 py-1.5 text-xs font-medium border transition-all " +
+                  (isActive
+                    ? "bg-primary text-primary-foreground border-primary shadow-[var(--shadow-glow)]"
+                    : "bg-primary/5 text-muted-foreground border-border/60 hover:border-primary/40 hover:text-foreground")
+                }
+              >
+                {tag}
+              </button>
+            );
+          })}
+        </div>
+
+        <p className="text-center text-xs text-muted-foreground mt-4">
+          Menampilkan {filtered.length} dari {projects.length} proyek
+        </p>
+
+        {filtered.length > 0 ? (
+          <div className="grid md:grid-cols-2 gap-6 mt-8">
+            {filtered.map((p) => (
+              <ProjectCard key={p.title} project={p} />
+            ))}
+          </div>
+        ) : (
+          <Card className="mt-8 p-10 text-center border-border/60" style={{ background: "var(--gradient-card)" }}>
+            <p className="text-muted-foreground">Tidak ada proyek dengan teknologi <span className="text-foreground font-medium">{active}</span>.</p>
+            <Button variant="outline" size="sm" className="mt-4 rounded-full" onClick={() => setActive("All")}>
+              Tampilkan semua
+            </Button>
+          </Card>
+        )}
+      </div>
+    </section>
+  );
+}
+
 function ProjectCard({ project }: { project: Project }) {
   const { title, role, period, description, highlights = [], stack = [], demo, github, featured } = project ?? ({} as Project);
   return (
