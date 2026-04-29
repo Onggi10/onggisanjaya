@@ -42,7 +42,7 @@ const projects: Project[] = [
   },
   {
     title: "Neo Production",
-    role: "Frontend Developer",
+    role: "full Stack Developer · Neo Production",
     period: "Aug 2024 – Sep 2025",
     description:
       "Situs resmi perusahaan event organizer & paket wisata di Indonesia. Website company profile yang menampilkan layanan, portofolio event, serta katalog paket wisata dengan fokus pada konversi & SEO.",
@@ -57,8 +57,25 @@ const projects: Project[] = [
     featured: true,
   },
   {
+    title: "Wedding Invitation — Personal Project",
+    role: "full Stack Developer",
+    period: "Aug 2024 – Sep 2025",
+    description:
+      "Aplikasi web untuk membuat undangan pernikahan secara online dengan desain yang menarik dan fitur interaktif.",
+    highlights: [
+      "Desain responsif mobile-first untuk pengalaman optimal di semua device",
+      "Optimasi SEO on-page dengan meta tags dinamis & structured data",
+      "Page speed tinggi via image optimization & static generation",
+      "Komponen reusable untuk maintenance & scalability jangka panjang",
+      "Fitur interaktif seperti RSVP, galeri foto, dan peta lokasi acara",
+    ],
+    stack: ["TypeScript", "JavaScript", "Tailwind CSS", "SEO", "Responsive Design"],
+    demo: "https://the-wedding-onggi-resti.vercel.app",
+    featured: true,
+  },
+  {
     title: "Developers BRI",
-    role: "Web Developer",
+    role: "frontend Developer & Drupal CMS Developer · PT Bank Rakyat Indonesia",
     period: "2023 – 2024",
     description:
       "Pengembangan & kustomisasi Content Management System berbasis Drupal untuk kebutuhan publikasi internal perusahaan, termasuk modul custom & integrasi dengan sistem internal.",
@@ -69,6 +86,7 @@ const projects: Project[] = [
     ],
     stack: ["Drupal", "PHP", "Twig", "MySQL"],
     demo: "https://developers.bri.co.id/id",
+    featured: true,
   },
   {
     title: "Backend Service — Golang",
@@ -82,6 +100,23 @@ const projects: Project[] = [
       "Unit testing untuk menjamin kualitas service",
     ],
     stack: ["Golang", "Gin", "Fiber", "REST API", "PostgreSQL"],
+    featured: true,
+  },
+    {
+    title: "Digital Sanjaya — Personal Project",
+    role: "Full Stack Developer",
+    period: "2023 – 2025",
+    description:
+      "Aplikasi web personal yang menampilkan portofolio dan informasi pribadi terkait jasa yang ditawarkan.",
+    highlights: [
+      "Desain responsif mobile-first untuk pengalaman optimal di semua device",
+      "Optimasi SEO on-page dengan meta tags dinamis & structured data",
+      "Page speed tinggi via image optimization & static generation",
+      "Komponen reusable untuk maintenance & scalability jangka panjang",
+    ],
+    stack: ["Vue.js", "TypeScript", "JavaScript", "Tailwind CSS", "SEO", "Responsive Design"],
+    demo: "https://digital-sanjaya.vercel.app",
+    featured: true,
   },
 ];
 
