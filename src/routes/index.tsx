@@ -385,7 +385,7 @@ function FeatureCard({ icon, title, text }: { icon: React.ReactNode; title: stri
 }
 
 function ProjectCard({ project }: { project: Project }) {
-  const { title, role, period, description, highlights, stack, demo, github, featured } = project;
+  const { title, role, period, description, highlights = [], stack = [], demo, github, featured } = project ?? ({} as Project);
   return (
     <Card
       className="p-7 border-border/60 hover:border-primary/40 transition-all hover:-translate-y-1 group flex flex-col relative overflow-hidden"
