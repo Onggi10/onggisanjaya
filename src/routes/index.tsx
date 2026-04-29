@@ -1,26 +1,349 @@
 import { createFileRoute } from "@tanstack/react-router";
+import profileImg from "@/assets/profile.jpeg";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import {
+  Mail, Phone, MapPin, Linkedin, Download, ArrowRight, Code2, Layers,
+  Zap, GitBranch, Briefcase, GraduationCap, Award, Languages, Github,
+} from "lucide-react";
 
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => ({
+    meta: [
+      { title: "Onggi Sanjaya — Frontend Developer Portfolio" },
+      {
+        name: "description",
+        content:
+          "Frontend Developer dengan 2+ tahun pengalaman membangun aplikasi web enterprise menggunakan React.js, Next.js, dan TypeScript.",
+      },
+      { property: "og:title", content: "Onggi Sanjaya — Frontend Developer" },
+      {
+        property: "og:description",
+        content:
+          "Portofolio Onggi Sanjaya — Frontend Developer berpengalaman di enterprise banking & web product.",
+      },
+    ],
+    links: [
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap",
+      },
+    ],
+  }),
+  component: Portfolio,
 });
 
-// IMPORTANT: Replace this placeholder. For sites with multiple pages (About, Services, Contact, etc.),
-// create separate route files (about.tsx, services.tsx, contact.tsx) — don't put all pages in this file.
-function PlaceholderIndex() {
+const skills = {
+  Frontend: ["React.js", "Next.js", "TypeScript", "Vue.js", "JavaScript", "HTML5", "CSS3", "Responsive Design"],
+  "State Management": ["Redux", "Redux Toolkit", "Context API"],
+  Backend: ["Golang (Gin & Fiber)", "Drupal CMS", "RESTful API"],
+  Tools: ["Git", "GitHub", "GitLab", "Bitbucket", "Jenkins", "Postman", "Jira"],
+  Testing: ["Jest", "Enzyme", "Cypress", "Selenium"],
+  Performance: ["Lighthouse", "Web Vitals", "Code Splitting"],
+};
+
+function Portfolio() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="min-h-screen">
+      {/* NAV */}
+      <nav className="fixed top-0 inset-x-0 z-50 backdrop-blur-xl bg-background/60 border-b border-border/50">
+        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+          <a href="#home" className="font-display font-bold text-lg">
+            Onggi<span className="text-primary">.</span>
+          </a>
+          <div className="hidden md:flex items-center gap-8 text-sm text-muted-foreground">
+            <a href="#about" className="hover:text-foreground transition-colors">About</a>
+            <a href="#experience" className="hover:text-foreground transition-colors">Experience</a>
+            <a href="#skills" className="hover:text-foreground transition-colors">Skills</a>
+            <a href="#projects" className="hover:text-foreground transition-colors">Projects</a>
+            <a href="#contact" className="hover:text-foreground transition-colors">Contact</a>
+          </div>
+          <Button asChild size="sm" variant="outline">
+            <a href="/CV_Onggi_Sanjaya.pdf" download>
+              <Download className="size-4" /> CV
+            </a>
+          </Button>
+        </div>
+      </nav>
+
+      {/* HERO */}
+      <section id="home" className="relative pt-32 pb-24 px-6 overflow-hidden">
+        <div
+          className="absolute top-20 left-1/2 -translate-x-1/2 w-[800px] h-[800px] rounded-full blur-3xl pointer-events-none"
+          style={{ background: "var(--gradient-primary)", opacity: 0.12 }}
+        />
+        <div className="max-w-6xl mx-auto grid md:grid-cols-[1fr_auto] gap-12 items-center relative">
+          <div className="space-y-6 animate-[fade-up_0.7s_ease-out]">
+            <Badge variant="secondary" className="rounded-full px-4 py-1.5 border border-primary/20">
+              <span className="size-2 rounded-full bg-primary mr-2 animate-pulse" />
+              Available for opportunities
+            </Badge>
+            <h1 className="text-5xl md:text-7xl font-bold leading-[1.05]">
+              Hi, I'm <br />
+              <span
+                className="bg-clip-text text-transparent"
+                style={{ backgroundImage: "var(--gradient-primary)" }}
+              >
+                Onggi Sanjaya
+              </span>
+            </h1>
+            <p className="text-xl text-muted-foreground max-w-xl leading-relaxed">
+              Frontend Developer dengan <span className="text-foreground font-semibold">2+ tahun</span> pengalaman membangun aplikasi web berbasis produk di lingkungan enterprise banking. Mahir dalam{" "}
+              <span className="text-primary font-medium">React.js</span>,{" "}
+              <span className="text-primary font-medium">Next.js</span>, dan integrasi RESTful API.
+            </p>
+            <div className="flex flex-wrap gap-3 pt-2">
+              <Button asChild size="lg" className="rounded-full shadow-[var(--shadow-glow)]">
+                <a href="#contact">
+                  Get in touch <ArrowRight className="size-4" />
+                </a>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="rounded-full">
+                <a href="#projects">View work</a>
+              </Button>
+            </div>
+            <div className="flex items-center gap-5 text-muted-foreground pt-4">
+              <a href="mailto:onggisanjaya@gmail.com" className="hover:text-primary transition-colors"><Mail className="size-5" /></a>
+              <a href="https://wa.me/6289531310890" className="hover:text-primary transition-colors"><Phone className="size-5" /></a>
+              <a href="#" className="hover:text-primary transition-colors"><Linkedin className="size-5" /></a>
+              <a href="#" className="hover:text-primary transition-colors"><Github className="size-5" /></a>
+            </div>
+          </div>
+          <div className="relative animate-[float_6s_ease-in-out_infinite] mx-auto md:mx-0">
+            <div
+              className="absolute inset-0 rounded-3xl blur-2xl"
+              style={{ background: "var(--gradient-primary)", opacity: 0.4 }}
+            />
+            <div className="relative w-64 h-80 md:w-72 md:h-96 rounded-3xl overflow-hidden border-2 border-primary/30 shadow-[var(--shadow-elegant)]">
+              <img src={profileImg} alt="Onggi Sanjaya" className="w-full h-full object-cover" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ABOUT */}
+      <section id="about" className="py-24 px-6">
+        <div className="max-w-6xl mx-auto">
+          <SectionHeader eyebrow="About" title="A little about me" />
+          <div className="grid md:grid-cols-3 gap-6 mt-12">
+            <FeatureCard
+              icon={<Code2 className="size-6" />}
+              title="Product-focused"
+              text="Membangun aplikasi web yang dipakai langsung pengguna di lingkungan enterprise banking."
+            />
+            <FeatureCard
+              icon={<Layers className="size-6" />}
+              title="Pixel-perfect UI"
+              text="Implementasi UI/UX dengan akurasi visual tinggi sesuai design system & Figma."
+            />
+            <FeatureCard
+              icon={<Zap className="size-6" />}
+              title="Performance-driven"
+              text="Code splitting, reusable components, dan optimasi rendering untuk pengalaman cepat."
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* EXPERIENCE */}
+      <section id="experience" className="py-24 px-6">
+        <div className="max-w-6xl mx-auto">
+          <SectionHeader eyebrow="Experience" title="Where I've worked" />
+          <Card className="mt-12 p-8 md:p-10 border-border/60" style={{ background: "var(--gradient-card)" }}>
+            <div className="flex flex-wrap items-start justify-between gap-4 mb-6">
+              <div>
+                <div className="flex items-center gap-3">
+                  <div className="size-12 rounded-xl bg-primary/10 border border-primary/20 grid place-items-center">
+                    <Briefcase className="size-6 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold">Frontend Developer</h3>
+                    <p className="text-primary font-medium">PT Bank Rakyat Indonesia (BRI)</p>
+                  </div>
+                </div>
+              </div>
+              <div className="text-right text-sm text-muted-foreground">
+                <p>Sep 2022 – Sep 2025</p>
+                <p>Jakarta, Indonesia</p>
+              </div>
+            </div>
+            <ul className="space-y-3 text-muted-foreground">
+              {[
+                "Mengembangkan & memelihara dashboard web Next.js / React.js untuk produk digital perbankan (BRIAPI Dashboard).",
+                "Mengimplementasi UI/UX dengan akurasi visual tinggi sesuai design system & Figma.",
+                "Mengelola state aplikasi dengan Redux & Redux Toolkit untuk data kompleks.",
+                "Integrasi RESTful API untuk data finansial real-time, dengan error handling yang stabil.",
+                "Menerapkan best practice performance: code splitting, reusable components, optimasi rendering.",
+                "Berkolaborasi dengan Backend, UI/UX, QA, dan DevOps. CI/CD via Jenkins.",
+                "Tambahan: pengembangan Drupal CMS & backend Golang (Gin & Fiber) untuk kebutuhan internal.",
+              ].map((item) => (
+                <li key={item} className="flex gap-3">
+                  <span className="text-primary mt-2 size-1.5 rounded-full bg-primary shrink-0" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </Card>
+        </div>
+      </section>
+
+      {/* SKILLS */}
+      <section id="skills" className="py-24 px-6">
+        <div className="max-w-6xl mx-auto">
+          <SectionHeader eyebrow="Skills" title="Tools & Technologies" />
+          <div className="grid md:grid-cols-2 gap-5 mt-12">
+            {Object.entries(skills).map(([category, list]) => (
+              <Card key={category} className="p-6 border-border/60" style={{ background: "var(--gradient-card)" }}>
+                <h3 className="font-display font-semibold mb-4 flex items-center gap-2">
+                  <GitBranch className="size-4 text-primary" />
+                  {category}
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {list.map((s) => (
+                    <Badge key={s} variant="secondary" className="rounded-full bg-primary/10 text-foreground border border-primary/20 hover:bg-primary/20 transition-colors">
+                      {s}
+                    </Badge>
+                  ))}
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* PROJECTS */}
+      <section id="projects" className="py-24 px-6">
+        <div className="max-w-6xl mx-auto">
+          <SectionHeader eyebrow="Projects" title="Selected work" />
+          <div className="grid md:grid-cols-2 gap-6 mt-12">
+            <ProjectCard
+              title="BRIAPI Dashboard"
+              period="Sep 2022 – Sep 2025"
+              description="Dashboard web internal untuk produk digital perbankan BRI. Next.js + React.js, Redux Toolkit, integrasi RESTful API, CI/CD Jenkins."
+              tags={["Next.js", "React", "Redux Toolkit", "TypeScript"]}
+            />
+            <ProjectCard
+              title="Neo Production"
+              period="Aug 2024 – Sep 2025"
+              description="Situs resmi perusahaan event organizer paket wisata di Indonesia. Website company profile responsif, user-friendly, dan SEO-friendly."
+              tags={["Next.js", "React", "Responsive", "SEO"]}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* EDUCATION + CERTS */}
+      <section className="py-24 px-6">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-6">
+          <Card className="p-8 border-border/60" style={{ background: "var(--gradient-card)" }}>
+            <h3 className="font-display font-bold text-xl mb-6 flex items-center gap-2">
+              <GraduationCap className="size-5 text-primary" /> Education
+            </h3>
+            <div className="space-y-5">
+              <div>
+                <p className="font-semibold">SMK Bhakti Insani Bogor</p>
+                <p className="text-sm text-muted-foreground">Rekayasa Perangkat Lunak · 2016 – 2019</p>
+              </div>
+              <div>
+                <p className="font-semibold">Cronos Studio Indonesia</p>
+                <p className="text-sm text-muted-foreground">Bootcamp Fundamental Frontend Engineer · 2021 – 2022</p>
+              </div>
+            </div>
+          </Card>
+          <Card className="p-8 border-border/60" style={{ background: "var(--gradient-card)" }}>
+            <h3 className="font-display font-bold text-xl mb-6 flex items-center gap-2">
+              <Award className="size-5 text-primary" /> Certifications
+            </h3>
+            <ul className="space-y-3 text-muted-foreground">
+              <li className="flex gap-3"><span className="size-1.5 mt-2 rounded-full bg-primary shrink-0" /> Dicoding · Pemrograman Web</li>
+              <li className="flex gap-3"><span className="size-1.5 mt-2 rounded-full bg-primary shrink-0" /> Dicoding · Frontend</li>
+              <li className="flex gap-3"><span className="size-1.5 mt-2 rounded-full bg-primary shrink-0" /> Dicoding · React JS</li>
+            </ul>
+            <div className="mt-8 pt-6 border-t border-border/60">
+              <h4 className="font-semibold mb-3 flex items-center gap-2"><Languages className="size-4 text-primary" /> Languages</h4>
+              <p className="text-sm text-muted-foreground">Bahasa Indonesia (Native) · English (Intermediate)</p>
+            </div>
+          </Card>
+        </div>
+      </section>
+
+      {/* CONTACT */}
+      <section id="contact" className="py-24 px-6">
+        <div className="max-w-4xl mx-auto text-center relative">
+          <div
+            className="absolute inset-0 blur-3xl -z-10"
+            style={{ background: "var(--gradient-primary)", opacity: 0.1 }}
+          />
+          <Badge variant="secondary" className="rounded-full">Contact</Badge>
+          <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-4">Let's build something great</h2>
+          <p className="text-lg text-muted-foreground mb-10 max-w-xl mx-auto">
+            Tertarik berkolaborasi atau diskusi peluang? Saya siap mendengar.
+          </p>
+          <div className="grid sm:grid-cols-3 gap-4 max-w-3xl mx-auto">
+            <ContactCard icon={<Mail className="size-5" />} label="Email" value="onggisanjaya@gmail.com" href="mailto:onggisanjaya@gmail.com" />
+            <ContactCard icon={<Phone className="size-5" />} label="WhatsApp" value="+62 895-3131-0890" href="https://wa.me/6289531310890" />
+            <ContactCard icon={<MapPin className="size-5" />} label="Location" value="Bogor, Indonesia" />
+          </div>
+        </div>
+      </section>
+
+      <footer className="py-10 px-6 border-t border-border/50 text-center text-sm text-muted-foreground">
+        © {new Date().getFullYear()} Onggi Sanjaya. Crafted with React & passion.
+      </footer>
     </div>
   );
 }
 
-function Index() {
-  return <PlaceholderIndex />;
+function SectionHeader({ eyebrow, title }: { eyebrow: string; title: string }) {
+  return (
+    <div className="text-center">
+      <Badge variant="secondary" className="rounded-full mb-3">{eyebrow}</Badge>
+      <h2 className="text-3xl md:text-5xl font-bold">{title}</h2>
+    </div>
+  );
+}
+
+function FeatureCard({ icon, title, text }: { icon: React.ReactNode; title: string; text: string }) {
+  return (
+    <Card className="p-6 border-border/60 hover:border-primary/40 transition-all hover:-translate-y-1" style={{ background: "var(--gradient-card)" }}>
+      <div className="size-12 rounded-xl bg-primary/10 border border-primary/20 grid place-items-center text-primary mb-4">
+        {icon}
+      </div>
+      <h3 className="font-display font-bold mb-2">{title}</h3>
+      <p className="text-sm text-muted-foreground leading-relaxed">{text}</p>
+    </Card>
+  );
+}
+
+function ProjectCard({
+  title, period, description, tags,
+}: { title: string; period: string; description: string; tags: string[] }) {
+  return (
+    <Card className="p-7 border-border/60 hover:border-primary/40 transition-all hover:-translate-y-1 group" style={{ background: "var(--gradient-card)" }}>
+      <div className="flex justify-between items-start mb-3">
+        <h3 className="font-display font-bold text-xl group-hover:text-primary transition-colors">{title}</h3>
+        <span className="text-xs text-muted-foreground">{period}</span>
+      </div>
+      <p className="text-sm text-muted-foreground mb-5 leading-relaxed">{description}</p>
+      <div className="flex flex-wrap gap-2">
+        {tags.map((t) => (
+          <Badge key={t} variant="secondary" className="rounded-full bg-primary/10 border border-primary/20">{t}</Badge>
+        ))}
+      </div>
+    </Card>
+  );
+}
+
+function ContactCard({
+  icon, label, value, href,
+}: { icon: React.ReactNode; label: string; value: string; href?: string }) {
+  const inner = (
+    <Card className="p-5 border-border/60 hover:border-primary/40 transition-all hover:-translate-y-1 h-full" style={{ background: "var(--gradient-card)" }}>
+      <div className="text-primary mb-2 flex justify-center">{icon}</div>
+      <p className="text-xs text-muted-foreground uppercase tracking-wider">{label}</p>
+      <p className="font-medium text-sm mt-1 break-all">{value}</p>
+    </Card>
+  );
+  return href ? <a href={href}>{inner}</a> : inner;
 }
