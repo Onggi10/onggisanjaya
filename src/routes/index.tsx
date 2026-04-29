@@ -6,7 +6,81 @@ import { Badge } from "@/components/ui/badge";
 import {
   Mail, Phone, MapPin, Linkedin, Download, ArrowRight, Code2, Layers,
   Zap, GitBranch, Briefcase, GraduationCap, Award, Languages, Github,
+  ExternalLink, Folder, CheckCircle2,
 } from "lucide-react";
+
+type Project = {
+  title: string;
+  role: string;
+  period: string;
+  description: string;
+  highlights: string[];
+  stack: string[];
+  demo?: string;
+  github?: string;
+  featured?: boolean;
+};
+
+const projects: Project[] = [
+  {
+    title: "BRIAPI Dashboard",
+    role: "Frontend Developer · PT Bank Rakyat Indonesia",
+    period: "Sep 2022 – Sep 2025",
+    description:
+      "Dashboard web internal untuk produk digital perbankan BRI yang digunakan oleh tim partner & internal untuk monitoring transaksi, pengelolaan API key, serta laporan finansial real-time.",
+    highlights: [
+      "Implementasi UI sesuai design system & Figma dengan akurasi visual tinggi",
+      "State management kompleks menggunakan Redux & Redux Toolkit",
+      "Integrasi RESTful API dengan error handling yang stabil",
+      "Optimasi performance: code splitting, reusable components, lazy loading",
+      "CI/CD pipeline via Jenkins, kolaborasi lintas tim (BE, QA, DevOps)",
+    ],
+    stack: ["Next.js", "React.js", "TypeScript", "Redux Toolkit", "RESTful API", "Jenkins"],
+    featured: true,
+  },
+  {
+    title: "Neo Production",
+    role: "Frontend Developer",
+    period: "Aug 2024 – Sep 2025",
+    description:
+      "Situs resmi perusahaan event organizer & paket wisata di Indonesia. Website company profile yang menampilkan layanan, portofolio event, serta katalog paket wisata dengan fokus pada konversi & SEO.",
+    highlights: [
+      "Desain responsif mobile-first untuk pengalaman optimal di semua device",
+      "Optimasi SEO on-page dengan meta tags dinamis & structured data",
+      "Page speed tinggi via image optimization & static generation",
+      "Komponen reusable untuk maintenance & scalability jangka panjang",
+    ],
+    stack: ["Next.js", "React.js", "Tailwind CSS", "SEO", "Responsive Design"],
+    demo: "https://neoproduction.id",
+    featured: true,
+  },
+  {
+    title: "Internal CMS — Drupal",
+    role: "Web Developer",
+    period: "2023 – 2024",
+    description:
+      "Pengembangan & kustomisasi Content Management System berbasis Drupal untuk kebutuhan publikasi internal perusahaan, termasuk modul custom & integrasi dengan sistem internal.",
+    highlights: [
+      "Custom module Drupal sesuai workflow internal",
+      "Integrasi dengan layanan backend internal",
+      "Theme kustom yang konsisten dengan brand guideline",
+    ],
+    stack: ["Drupal", "PHP", "Twig", "MySQL"],
+  },
+  {
+    title: "Backend Service — Golang",
+    role: "Backend Developer",
+    period: "2023 – 2025",
+    description:
+      "Pengembangan layanan backend internal menggunakan Golang dengan framework Gin & Fiber untuk mendukung kebutuhan microservice & API internal perusahaan.",
+    highlights: [
+      "Desain RESTful API performant dengan Gin & Fiber",
+      "Integrasi database & validasi request yang aman",
+      "Unit testing untuk menjamin kualitas service",
+    ],
+    stack: ["Golang", "Gin", "Fiber", "REST API", "PostgreSQL"],
+  },
+];
 
 export const Route = createFileRoute("/")({
   head: () => ({
