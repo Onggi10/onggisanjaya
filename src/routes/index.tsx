@@ -258,13 +258,13 @@ function Portfolio() {
           </div>
 
           {/* PROFILE GALLERY */}
-          <div className="mt-16">
+          {/* <div className="mt-16">
             <h3 className="text-2xl font-bold text-center mb-2">Galeri Foto</h3>
             <p className="text-center text-muted-foreground mb-8 text-sm">
               Klik foto untuk memperbesar
             </p>
             <ProfileGallery />
-          </div>
+          </div> */}
         </div>
       </section>
 
