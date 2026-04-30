@@ -16,7 +16,7 @@ const clientDir = resolve(root, "dist/client");
 const serverEntry = resolve(root, "dist/server/index.js");
 
 console.log("→ Running vite build...");
-const build = spawnSync("vite", ["build"], { stdio: "inherit", shell: true });
+const build = spawnSync("npx", ["vite", "build"], { stdio: "inherit", shell: true });
 if (build.status !== 0) {
   console.error("vite build failed");
   process.exit(build.status ?? 1);
