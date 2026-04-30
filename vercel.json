@@ -1,6 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "vite build",
+  "buildCommand": "node scripts/build-static.mjs",
   "outputDirectory": "dist/client",
   "framework": null,
   "installCommand": "npm install",
