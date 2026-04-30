@@ -1,14 +1,15 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useCallback, useEffect } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import profileImg from "@/assets/profile.jpeg";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import {
   Mail, Phone, MapPin, Linkedin, Download, ArrowRight, Code2, Layers,
   Zap, GitBranch, Briefcase, GraduationCap, Award, Languages, Github,
-  ExternalLink, Folder, CheckCircle2, MessageCircle,
+  ExternalLink, Folder, CheckCircle2, MessageCircle, ChevronLeft, ChevronRight,
 } from "lucide-react";
 
 type Project = {
@@ -254,6 +255,15 @@ function Portfolio() {
               title="Performance-driven"
               text="Code splitting, reusable components, dan optimasi rendering untuk pengalaman cepat."
             />
+          </div>
+
+          {/* PROFILE GALLERY */}
+          <div className="mt-16">
+            <h3 className="text-2xl font-bold text-center mb-2">Galeri Foto</h3>
+            <p className="text-center text-muted-foreground mb-8 text-sm">
+              Klik foto untuk memperbesar
+            </p>
+            <ProfileGallery />
           </div>
         </div>
       </section>
@@ -600,4 +610,161 @@ function ContactCard({
     </Card>
   );
   return href ? <a href={href}>{inner}</a> : inner;
+}
+
+// =====================================================================
+// PROFILE GALLERY — responsive grid + lightbox modal
+// =====================================================================
+type GalleryItem = {
+  src: string;
+  alt: string;
+  caption: string;
+  /** Tailwind aspect ratio class for the thumbnail */
+  aspect: string;
+};
+
+const galleryItems: GalleryItem[] = [
+  {
+    src: profileImg,
+    alt: "Foto profil Onggi Sanjaya — potret formal",
+    caption: "Foto profil utama",
+    aspect: "aspect-square",
+  },
+  {
+    src: profileImg,
+    alt: "Foto profil Onggi Sanjaya — orientasi portrait",
+    caption: "Portrait",
+    aspect: "aspect-[3/4]",
+  },
+  {
+    src: profileImg,
+    alt: "Foto profil Onggi Sanjaya — landscape crop",
+    caption: "Landscape",
+    aspect: "aspect-[4/3]",
+  },
+  {
+    src: profileImg,
+    alt: "Foto profil Onggi Sanjaya — wide crop",
+    caption: "Wide",
+    aspect: "aspect-video",
+  },
+];
+
+function ProfileGallery() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const isOpen = openIndex !== null;
+
+  const close = useCallback(() => setOpenIndex(null), []);
+  const next = useCallback(() => {
+    setOpenIndex((i) => (i === null ? null : (i + 1) % galleryItems.length));
+  }, []);
+  const prev = useCallback(() => {
+    setOpenIndex((i) =>
+      i === null ? null : (i - 1 + galleryItems.length) % galleryItems.length,
+    );
+  }, []);
+
+  // Keyboard navigation when lightbox is open
+  useEffect(() => {
+    if (!isOpen) return;
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight") next();
+      else if (e.key === "ArrowLeft") prev();
+      else if (e.key === "Escape") close();
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [isOpen, next, prev, close]);
+
+  const current = openIndex !== null ? galleryItems[openIndex] : null;
+
+  return (
+    <>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {galleryItems.map((item, i) => (
+          <button
+            key={i}
+            type="button"
+            onClick={() => setOpenIndex(i)}
+            aria-label={`Buka ${item.caption} dalam mode penuh`}
+            className="group relative overflow-hidden rounded-2xl border border-border/60 bg-card focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-all hover:-translate-y-1 hover:shadow-[var(--shadow-glow)]"
+            style={{ background: "var(--gradient-card)" }}
+          >
+            <div className={`${item.aspect} w-full overflow-hidden`}>
+              <img
+                src={item.src}
+                alt={item.alt}
+                loading="lazy"
+                decoding="async"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+            </div>
+            <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+              <span className="text-sm font-medium text-foreground">
+                {item.caption}
+              </span>
+            </div>
+          </button>
+        ))}
+      </div>
+
+      <Dialog open={isOpen} onOpenChange={(o) => !o && close()}>
+        <DialogContent
+          className="max-w-5xl w-[95vw] p-0 border-border/60 bg-background/95 backdrop-blur-sm overflow-hidden"
+        >
+          <DialogTitle className="sr-only">
+            {current?.caption ?? "Foto"}
+          </DialogTitle>
+          <DialogDescription className="sr-only">
+            {current?.alt ?? ""}
+          </DialogDescription>
+
+          {current && (
+            <div className="relative">
+              <div className="flex items-center justify-center bg-black/40 max-h-[80vh] overflow-hidden">
+                <img
+                  src={current.src}
+                  alt={current.alt}
+                  className="max-w-full max-h-[80vh] w-auto h-auto object-contain"
+                />
+              </div>
+
+              {/* Close button is provided by DialogContent itself */}
+
+
+              {/* Prev / Next */}
+              {galleryItems.length > 1 && (
+                <>
+                  <button
+                    type="button"
+                    onClick={prev}
+                    aria-label="Foto sebelumnya"
+                    className="absolute left-3 top-1/2 -translate-y-1/2 size-11 grid place-items-center rounded-full bg-background/80 backdrop-blur border border-border hover:bg-background focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                  >
+                    <ChevronLeft className="size-5" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={next}
+                    aria-label="Foto berikutnya"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 size-11 grid place-items-center rounded-full bg-background/80 backdrop-blur border border-border hover:bg-background focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                  >
+                    <ChevronRight className="size-5" />
+                  </button>
+                </>
+              )}
+
+              {/* Caption + counter */}
+              <div className="flex items-center justify-between gap-4 px-5 py-3 border-t border-border/60 bg-card/60 backdrop-blur">
+                <p className="text-sm font-medium">{current.caption}</p>
+                <p className="text-xs text-muted-foreground tabular-nums">
+                  {(openIndex ?? 0) + 1} / {galleryItems.length}
+                </p>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
+    </>
+  );
 }
