@@ -729,15 +729,8 @@ function ProfileGallery() {
                 />
               </div>
 
-              {/* Close */}
-              <button
-                type="button"
-                onClick={close}
-                aria-label="Tutup galeri"
-                className="absolute top-3 right-3 size-10 grid place-items-center rounded-full bg-background/80 backdrop-blur border border-border hover:bg-background focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-              >
-                <X className="size-5" />
-              </button>
+              {/* Close button is provided by DialogContent itself */}
+
 
               {/* Prev / Next */}
               {galleryItems.length > 1 && (
