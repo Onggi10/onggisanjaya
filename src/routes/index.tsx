@@ -1,14 +1,15 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useCallback, useEffect } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import profileImg from "@/assets/profile.jpeg";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import {
   Mail, Phone, MapPin, Linkedin, Download, ArrowRight, Code2, Layers,
   Zap, GitBranch, Briefcase, GraduationCap, Award, Languages, Github,
-  ExternalLink, Folder, CheckCircle2, MessageCircle,
+  ExternalLink, Folder, CheckCircle2, MessageCircle, ChevronLeft, ChevronRight, X,
 } from "lucide-react";
 
 type Project = {
