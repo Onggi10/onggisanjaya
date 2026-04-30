@@ -711,7 +711,6 @@ function ProfileGallery() {
       <Dialog open={isOpen} onOpenChange={(o) => !o && close()}>
         <DialogContent
           className="max-w-5xl w-[95vw] p-0 border-border/60 bg-background/95 backdrop-blur-sm overflow-hidden"
-          showCloseButton={false}
         >
           <DialogTitle className="sr-only">
             {current?.caption ?? "Foto"}
