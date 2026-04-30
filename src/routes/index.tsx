@@ -9,7 +9,7 @@ import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/compone
 import {
   Mail, Phone, MapPin, Linkedin, Download, ArrowRight, Code2, Layers,
   Zap, GitBranch, Briefcase, GraduationCap, Award, Languages, Github,
-  ExternalLink, Folder, CheckCircle2, MessageCircle, ChevronLeft, ChevronRight, X,
+  ExternalLink, Folder, CheckCircle2, MessageCircle, ChevronLeft, ChevronRight,
 } from "lucide-react";
 
 type Project = {
