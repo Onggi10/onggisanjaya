@@ -1,6 +1,6 @@
 /**
  * Build script for static deployment to Vercel/GitHub Pages.
- * 
+ *
  * 1. Runs `vite build` to generate client + SSR worker bundles
  * 2. Loads the SSR worker and renders the home page "/" to HTML
  * 3. Writes the rendered HTML to dist/client/index.html

@@ -9,10 +9,30 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { Sheet, SheetClose, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import {
-  Mail, Phone, MapPin, Linkedin, Download, ArrowRight, Code2, Layers,
-  Zap, GitBranch, Briefcase, GraduationCap, Award, Languages, Github,
-  ExternalLink, Folder, CheckCircle2, MessageCircle, ChevronLeft, ChevronRight,
+  Mail,
+  Phone,
+  MapPin,
+  Linkedin,
+  Download,
+  ArrowRight,
+  Code2,
+  Layers,
+  Zap,
+  GitBranch,
+  Briefcase,
+  GraduationCap,
+  Award,
+  Languages,
+  Github,
+  ExternalLink,
+  Folder,
+  CheckCircle2,
+  MessageCircle,
+  ChevronLeft,
+  ChevronRight,
+  Menu,
 } from "lucide-react";
 
 type Project = {
@@ -111,7 +131,7 @@ const projects: Project[] = [
     stack: ["Golang", "Gin", "Fiber", "REST API", "PostgreSQL"],
     featured: true,
   },
-    {
+  {
     title: "Digital Sanjaya — Personal Project",
     role: "Full Stack Developer",
     period: "2023 – 2025",
@@ -156,7 +176,16 @@ export const Route = createFileRoute("/")({
 });
 
 const skills = {
-  Frontend: ["React.js", "Next.js", "TypeScript", "Vue.js", "JavaScript", "HTML5", "CSS3", "Responsive Design"],
+  Frontend: [
+    "React.js",
+    "Next.js",
+    "TypeScript",
+    "Vue.js",
+    "JavaScript",
+    "HTML5",
+    "CSS3",
+    "Responsive Design",
+  ],
   "State Management": ["Redux", "Redux Toolkit", "Context API"],
   Backend: ["Golang (Gin & Fiber)", "Drupal CMS", "RESTful API"],
   Tools: ["Git", "GitHub", "GitLab", "Bitbucket", "Jenkins", "Postman", "Jira"],
@@ -173,18 +202,79 @@ function Portfolio() {
           <a href="#home" className="font-display font-bold text-lg">
             <span className="text-primary">Onggi Sanjaya</span>
           </a>
-          <div className="hidden md:flex items-center gap-8 text-sm text-muted-foreground">
-            <a href="#about" className="hover:text-foreground transition-colors">About</a>
-            <a href="#experience" className="hover:text-foreground transition-colors">Experience</a>
-            <a href="#skills" className="hover:text-foreground transition-colors">Skills</a>
-            <a href="#projects" className="hover:text-foreground transition-colors">Projects</a>
-            <a href="#contact" className="hover:text-foreground transition-colors">Contact</a>
+          <div className="flex items-center gap-2">
+            <div className="hidden md:flex items-center gap-8 text-sm text-muted-foreground">
+              <a href="#about" className="hover:text-foreground transition-colors">
+                About
+              </a>
+              <a href="#experience" className="hover:text-foreground transition-colors">
+                Experience
+              </a>
+              <a href="#skills" className="hover:text-foreground transition-colors">
+                Skills
+              </a>
+              <a href="#projects" className="hover:text-foreground transition-colors">
+                Projects
+              </a>
+              <a href="#contact" className="hover:text-foreground transition-colors">
+                Contact
+              </a>
+            </div>
+
+            {/* Desktop CV */}
+            <Button asChild size="sm" variant="outline" className="hidden md:inline-flex">
+              <a href="/CV_Onggi_Sanjaya.pdf" download>
+                <Download className="size-4" /> CV
+              </a>
+            </Button>
+
+            {/* Mobile menu */}
+            <div className="md:hidden">
+              <Sheet>
+                <SheetTrigger asChild>
+                  <Button
+                    size="icon"
+                    variant="outline"
+                    className="rounded-full"
+                    aria-label="Buka menu"
+                  >
+                    <Menu className="size-5" />
+                  </Button>
+                </SheetTrigger>
+                <SheetContent side="right" className="w-[86vw] max-w-sm">
+                  <SheetTitle>Menu</SheetTitle>
+                  <div className="mt-6 flex flex-col gap-4 text-sm">
+                    {[
+                      { href: "#about", label: "About" },
+                      { href: "#experience", label: "Experience" },
+                      { href: "#skills", label: "Skills" },
+                      { href: "#projects", label: "Projects" },
+                      { href: "#contact", label: "Contact" },
+                    ].map((item) => (
+                      <SheetClose asChild key={item.href}>
+                        <a
+                          href={item.href}
+                          className="rounded-md px-2 py-2 text-muted-foreground hover:text-foreground hover:bg-muted/30 transition-colors"
+                        >
+                          {item.label}
+                        </a>
+                      </SheetClose>
+                    ))}
+                  </div>
+
+                  <div className="mt-6 pt-6 border-t border-border/60">
+                    <SheetClose asChild>
+                      <Button asChild className="w-full rounded-full">
+                        <a href="/CV_Onggi_Sanjaya.pdf" download>
+                          <Download className="size-4" /> Download CV
+                        </a>
+                      </Button>
+                    </SheetClose>
+                  </div>
+                </SheetContent>
+              </Sheet>
+            </div>
           </div>
-          <Button asChild size="sm" variant="outline">
-            <a href="/CV_Onggi_Sanjaya.pdf" download>
-              <Download className="size-4" /> CV
-            </a>
-          </Button>
         </div>
       </nav>
 
@@ -196,7 +286,10 @@ function Portfolio() {
         />
         <div className="max-w-6xl mx-auto grid md:grid-cols-[1fr_auto] gap-12 items-center relative">
           <div className="space-y-6 animate-[fade-up_0.7s_ease-out]">
-            <Badge variant="secondary" className="rounded-full px-4 py-1.5 border border-primary/20">
+            <Badge
+              variant="secondary"
+              className="rounded-full px-4 py-1.5 border border-primary/20"
+            >
               <span className="size-2 rounded-full bg-primary mr-2 animate-pulse" />
               Available for opportunities
             </Badge>
@@ -210,7 +303,9 @@ function Portfolio() {
               </span>
             </h1>
             <p className="text-xl text-muted-foreground max-w-xl leading-relaxed">
-              Frontend Developer dengan <span className="text-foreground font-semibold">2+ tahun</span> pengalaman membangun aplikasi web berbasis produk di lingkungan enterprise banking. Mahir dalam{" "}
+              Frontend Developer dengan{" "}
+              <span className="text-foreground font-semibold">2+ tahun</span> pengalaman membangun
+              aplikasi web berbasis produk di lingkungan enterprise banking. Mahir dalam{" "}
               <span className="text-primary font-medium">React.js</span>,{" "}
               <span className="text-primary font-medium">Next.js</span>, dan integrasi RESTful API.
             </p>
@@ -225,10 +320,24 @@ function Portfolio() {
               </Button>
             </div>
             <div className="flex items-center gap-5 text-muted-foreground pt-4">
-              <a href="mailto:onggisanjaya@gmail.com" className="hover:text-primary transition-colors"><Mail className="size-5" /></a>
-              <a href="https://wa.me/6289531310890" className="hover:text-primary transition-colors"><Phone className="size-5" /></a>
-              <a href="#" className="hover:text-primary transition-colors"><Linkedin className="size-5" /></a>
-              <a href="#" className="hover:text-primary transition-colors"><Github className="size-5" /></a>
+              <a
+                href="mailto:onggisanjaya@gmail.com"
+                className="hover:text-primary transition-colors"
+              >
+                <Mail className="size-5" />
+              </a>
+              <a
+                href="https://wa.me/6289531310890"
+                className="hover:text-primary transition-colors"
+              >
+                <Phone className="size-5" />
+              </a>
+              <a href="#" className="hover:text-primary transition-colors">
+                <Linkedin className="size-5" />
+              </a>
+              <a href="#" className="hover:text-primary transition-colors">
+                <Github className="size-5" />
+              </a>
             </div>
           </div>
           <div className="relative animate-[float_6s_ease-in-out_infinite] mx-auto md:mx-0">
@@ -280,20 +389,25 @@ function Portfolio() {
       <section id="experience" className="py-24 px-6">
         <div className="max-w-6xl mx-auto">
           <SectionHeader eyebrow="Experience" title="Where I've worked" />
-          <Card className="mt-12 p-8 md:p-10 border-border/60" style={{ background: "var(--gradient-card)" }}>
+          <Card
+            className="mt-12 p-8 md:p-10 border-border/60"
+            style={{ background: "var(--gradient-card)" }}
+          >
             <div className="flex flex-wrap items-start justify-between gap-4 mb-6">
               <div>
                 <div className="flex items-center gap-3">
                   <div className="size-12 rounded-xl bg-primary/10 border border-primary/20 grid place-items-center">
                     <Briefcase className="size-6 text-primary" />
                   </div>
-                  <div>
-                    <h3 className="text-xl font-bold">Frontend Developer</h3>
-                    <p className="text-primary font-medium">PT Bank Rakyat Indonesia (BRI)</p>
+                  <div className="min-w-0">
+                    <h3 className="text-xl font-bold break-words">Frontend Developer</h3>
+                    <p className="text-primary font-medium break-words">
+                      PT Bank Rakyat Indonesia (BRI)
+                    </p>
                   </div>
                 </div>
               </div>
-              <div className="text-right text-sm text-muted-foreground">
+              <div className="text-right text-sm text-muted-foreground break-words">
                 <p>Sep 2022 – Sep 2025</p>
                 <p>Jakarta, Indonesia</p>
               </div>
@@ -324,14 +438,22 @@ function Portfolio() {
           <SectionHeader eyebrow="Skills" title="Tools & Technologies" />
           <div className="grid md:grid-cols-2 gap-5 mt-12">
             {Object.entries(skills).map(([category, list]) => (
-              <Card key={category} className="p-6 border-border/60" style={{ background: "var(--gradient-card)" }}>
+              <Card
+                key={category}
+                className="p-6 border-border/60"
+                style={{ background: "var(--gradient-card)" }}
+              >
                 <h3 className="font-display font-semibold mb-4 flex items-center gap-2">
                   <GitBranch className="size-4 text-primary" />
                   {category}
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {list.map((s) => (
-                    <Badge key={s} variant="secondary" className="rounded-full bg-primary/10 text-foreground border border-primary/20 hover:bg-primary/20 transition-colors">
+                    <Badge
+                      key={s}
+                      variant="secondary"
+                      className="rounded-full bg-primary/10 text-foreground border border-primary/20 hover:bg-primary/20 transition-colors"
+                    >
                       {s}
                     </Badge>
                   ))}
@@ -358,7 +480,9 @@ function Portfolio() {
               </div>
               <div>
                 <p className="font-semibold">Cronos Studio Indonesia</p>
-                <p className="text-sm text-muted-foreground">Bootcamp Fundamental Frontend Engineer · 2021 – 2022</p>
+                <p className="text-sm text-muted-foreground">
+                  Bootcamp Fundamental Frontend Engineer · 2021 – 2022
+                </p>
               </div>
             </div>
           </Card>
@@ -367,13 +491,26 @@ function Portfolio() {
               <Award className="size-5 text-primary" /> Certifications
             </h3>
             <ul className="space-y-3 text-muted-foreground">
-              <li className="flex gap-3"><span className="size-1.5 mt-2 rounded-full bg-primary shrink-0" /> Dicoding · Pemrograman Web</li>
-              <li className="flex gap-3"><span className="size-1.5 mt-2 rounded-full bg-primary shrink-0" /> Dicoding · Frontend</li>
-              <li className="flex gap-3"><span className="size-1.5 mt-2 rounded-full bg-primary shrink-0" /> Dicoding · React JS</li>
+              <li className="flex gap-3">
+                <span className="size-1.5 mt-2 rounded-full bg-primary shrink-0" /> Dicoding ·
+                Pemrograman Web
+              </li>
+              <li className="flex gap-3">
+                <span className="size-1.5 mt-2 rounded-full bg-primary shrink-0" /> Dicoding ·
+                Frontend
+              </li>
+              <li className="flex gap-3">
+                <span className="size-1.5 mt-2 rounded-full bg-primary shrink-0" /> Dicoding · React
+                JS
+              </li>
             </ul>
             <div className="mt-8 pt-6 border-t border-border/60">
-              <h4 className="font-semibold mb-3 flex items-center gap-2"><Languages className="size-4 text-primary" /> Languages</h4>
-              <p className="text-sm text-muted-foreground">Bahasa Indonesia (Native) · English (Intermediate)</p>
+              <h4 className="font-semibold mb-3 flex items-center gap-2">
+                <Languages className="size-4 text-primary" /> Languages
+              </h4>
+              <p className="text-sm text-muted-foreground">
+                Bahasa Indonesia (Native) · English (Intermediate)
+              </p>
             </div>
           </Card>
         </div>
@@ -386,15 +523,31 @@ function Portfolio() {
             className="absolute inset-0 blur-3xl -z-10"
             style={{ background: "var(--gradient-primary)", opacity: 0.1 }}
           />
-          <Badge variant="secondary" className="rounded-full">Contact</Badge>
+          <Badge variant="secondary" className="rounded-full">
+            Contact
+          </Badge>
           <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-4">Let's build something great</h2>
           <p className="text-lg text-muted-foreground mb-10 max-w-xl mx-auto">
             Tertarik berkolaborasi atau diskusi peluang? Saya siap mendengar.
           </p>
           <div className="grid sm:grid-cols-3 gap-4 max-w-3xl mx-auto">
-            <ContactCard icon={<Mail className="size-5" />} label="Email" value="onggisanjaya@gmail.com" href="mailto:onggisanjaya@gmail.com" />
-            <ContactCard icon={<Phone className="size-5" />} label="WhatsApp" value="+62 895-3131-0890" href="https://wa.me/6289531310890" />
-            <ContactCard icon={<MapPin className="size-5" />} label="Location" value="Bogor, Indonesia" />
+            <ContactCard
+              icon={<Mail className="size-5" />}
+              label="Email"
+              value="onggisanjaya@gmail.com"
+              href="mailto:onggisanjaya@gmail.com"
+            />
+            <ContactCard
+              icon={<Phone className="size-5" />}
+              label="WhatsApp"
+              value="+62 895-3131-0890"
+              href="https://wa.me/6289531310890"
+            />
+            <ContactCard
+              icon={<MapPin className="size-5" />}
+              label="Location"
+              value="Bogor, Indonesia"
+            />
           </div>
         </div>
       </section>
@@ -458,15 +611,28 @@ function WhatsAppFab() {
 function SectionHeader({ eyebrow, title }: { eyebrow: string; title: string }) {
   return (
     <div className="text-center">
-      <Badge variant="secondary" className="rounded-full mb-3">{eyebrow}</Badge>
+      <Badge variant="secondary" className="rounded-full mb-3">
+        {eyebrow}
+      </Badge>
       <h2 className="text-3xl md:text-5xl font-bold">{title}</h2>
     </div>
   );
 }
 
-function FeatureCard({ icon, title, text }: { icon: React.ReactNode; title: string; text: string }) {
+function FeatureCard({
+  icon,
+  title,
+  text,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  text: string;
+}) {
   return (
-    <Card className="p-6 border-border/60 hover:border-primary/40 transition-all hover:-translate-y-1" style={{ background: "var(--gradient-card)" }}>
+    <Card
+      className="p-6 border-border/60 hover:border-primary/40 transition-all hover:-translate-y-1"
+      style={{ background: "var(--gradient-card)" }}
+    >
       <div className="size-12 rounded-xl bg-primary/10 border border-primary/20 grid place-items-center text-primary mb-4">
         {icon}
       </div>
@@ -494,10 +660,15 @@ function ProjectsSection() {
       <div className="max-w-6xl mx-auto">
         <SectionHeader eyebrow="Projects" title="Selected work" />
         <p className="text-center text-muted-foreground mt-4 max-w-2xl mx-auto">
-          Beberapa proyek pilihan yang merepresentasikan perjalanan saya sebagai Frontend Developer di lingkungan enterprise & product.
+          Beberapa proyek pilihan yang merepresentasikan perjalanan saya sebagai Frontend Developer
+          di lingkungan enterprise & product.
         </p>
 
-        <div className="flex flex-wrap justify-center gap-2 mt-10" role="tablist" aria-label="Filter proyek berdasarkan teknologi">
+        <div
+          className="flex flex-wrap justify-center gap-2 mt-10"
+          role="tablist"
+          aria-label="Filter proyek berdasarkan teknologi"
+        >
           {["All", ...allTags].map((tag) => {
             const isActive = active === tag;
             return (
@@ -530,9 +701,20 @@ function ProjectsSection() {
             ))}
           </div>
         ) : (
-          <Card className="mt-8 p-10 text-center border-border/60" style={{ background: "var(--gradient-card)" }}>
-            <p className="text-muted-foreground">Tidak ada proyek dengan teknologi <span className="text-foreground font-medium">{active}</span>.</p>
-            <Button variant="outline" size="sm" className="mt-4 rounded-full" onClick={() => setActive("All")}>
+          <Card
+            className="mt-8 p-10 text-center border-border/60"
+            style={{ background: "var(--gradient-card)" }}
+          >
+            <p className="text-muted-foreground">
+              Tidak ada proyek dengan teknologi{" "}
+              <span className="text-foreground font-medium">{active}</span>.
+            </p>
+            <Button
+              variant="outline"
+              size="sm"
+              className="mt-4 rounded-full"
+              onClick={() => setActive("All")}
+            >
               Tampilkan semua
             </Button>
           </Card>
@@ -632,7 +814,7 @@ function ProjectCard({ project }: { project: Project }) {
           <img
             src={image}
             alt={title}
-            className="w-full h-57 object-cover transition-transform duration-500 group-hover:scale-110"
+            className="w-full h-48 sm:h-56 object-cover transition-transform duration-500 group-hover:scale-110"
             loading="lazy"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -651,11 +833,11 @@ function ProjectCard({ project }: { project: Project }) {
         <div className="size-10 rounded-xl bg-primary/10 border border-primary/20 grid place-items-center text-primary">
           <Folder className="size-5" />
         </div>
-        <div>
-          <h3 className="font-display font-bold text-xl group-hover:text-primary transition-colors">
+        <div className="min-w-0">
+          <h3 className="font-display font-bold text-xl group-hover:text-primary transition-colors break-words leading-tight">
             {title}
           </h3>
-          <p className="text-xs text-muted-foreground">{role}</p>
+          <p className="text-xs text-muted-foreground break-words">{role}</p>
         </div>
       </div>
 
@@ -705,10 +887,21 @@ function ProjectCard({ project }: { project: Project }) {
 }
 
 function ContactCard({
-  icon, label, value, href,
-}: { icon: React.ReactNode; label: string; value: string; href?: string }) {
+  icon,
+  label,
+  value,
+  href,
+}: {
+  icon: React.ReactNode;
+  label: string;
+  value: string;
+  href?: string;
+}) {
   const inner = (
-    <Card className="p-5 border-border/60 hover:border-primary/40 transition-all hover:-translate-y-1 h-full" style={{ background: "var(--gradient-card)" }}>
+    <Card
+      className="p-5 border-border/60 hover:border-primary/40 transition-all hover:-translate-y-1 h-full"
+      style={{ background: "var(--gradient-card)" }}
+    >
       <div className="text-primary mb-2 flex justify-center">{icon}</div>
       <p className="text-xs text-muted-foreground uppercase tracking-wider">{label}</p>
       <p className="font-medium text-sm mt-1 break-all">{value}</p>
@@ -764,9 +957,7 @@ function ProfileGallery() {
     setOpenIndex((i) => (i === null ? null : (i + 1) % galleryItems.length));
   }, []);
   const prev = useCallback(() => {
-    setOpenIndex((i) =>
-      i === null ? null : (i - 1 + galleryItems.length) % galleryItems.length,
-    );
+    setOpenIndex((i) => (i === null ? null : (i - 1 + galleryItems.length) % galleryItems.length));
   }, []);
 
   // Keyboard navigation when lightbox is open
@@ -805,24 +996,16 @@ function ProfileGallery() {
               />
             </div>
             <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-              <span className="text-sm font-medium text-foreground">
-                {item.caption}
-              </span>
+              <span className="text-sm font-medium text-foreground">{item.caption}</span>
             </div>
           </button>
         ))}
       </div>
 
       <Dialog open={isOpen} onOpenChange={(o) => !o && close()}>
-        <DialogContent
-          className="max-w-5xl w-[95vw] p-0 border-border/60 bg-background/95 backdrop-blur-sm overflow-hidden"
-        >
-          <DialogTitle className="sr-only">
-            {current?.caption ?? "Foto"}
-          </DialogTitle>
-          <DialogDescription className="sr-only">
-            {current?.alt ?? ""}
-          </DialogDescription>
+        <DialogContent className="max-w-5xl w-[95vw] p-0 border-border/60 bg-background/95 backdrop-blur-sm overflow-hidden">
+          <DialogTitle className="sr-only">{current?.caption ?? "Foto"}</DialogTitle>
+          <DialogDescription className="sr-only">{current?.alt ?? ""}</DialogDescription>
 
           {current && (
             <div className="relative">
@@ -835,7 +1018,6 @@ function ProfileGallery() {
               </div>
 
               {/* Close button is provided by DialogContent itself */}
-
 
               {/* Prev / Next */}
               {galleryItems.length > 1 && (

@@ -5,6 +5,7 @@ Proyek ini punya custom build script yang menghasilkan **HTML statis** dari apli
 ## Cara kerjanya
 
 `scripts/build-static.mjs` akan:
+
 1. Menjalankan `vite build` (menghasilkan client bundle + SSR worker)
 2. Memuat SSR worker, lalu merender route `/` ke HTML
 3. Menulis HTML ke `dist/client/index.html`
@@ -13,6 +14,7 @@ Proyek ini punya custom build script yang menghasilkan **HTML statis** dari apli
 ## Deploy ke Vercel
 
 ### Cara 1: Import dari GitHub (Recommended)
+
 1. Connect proyek ke GitHub via Lovable (menu **GitHub → Connect**)
 2. Buka [vercel.com/new](https://vercel.com/new)
 3. Import repository Anda
@@ -22,6 +24,7 @@ Proyek ini punya custom build script yang menghasilkan **HTML statis** dari apli
 5. Klik **Deploy** ✅
 
 ### Cara 2: Vercel CLI
+
 ```bash
 npm install -g vercel
 vercel
@@ -63,5 +66,6 @@ npx serve dist/client
 ```
 
 ## Catatan
+
 - Tetap bisa publish via tombol **Publish** Lovable (cara termudah, 1 klik)
 - File `wrangler.jsonc` & SSR config tetap dipertahankan agar preview Lovable jalan normal

@@ -4,7 +4,5 @@
   "outputDirectory": "dist/client",
   "framework": null,
   "installCommand": "npm install",
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
-  ]
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }
