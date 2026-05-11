@@ -455,7 +455,7 @@ function Portfolio() {
                     <Badge
                       key={s}
                       variant="secondary"
-                      className="rounded-full bg-primary/10 text-foreground border border-primary/20 hover:bg-primary/20 transition-colors"
+                      className="rounded-full border-primary/10 hover:bg-primary/10 transition-colors"
                     >
                       {s}
                     </Badge>
@@ -826,7 +826,10 @@ function ProjectCard({ project }: { project: Project }) {
 
       {/* BADGE */}
       {featured && (
-        <Badge className="absolute top-4 right-4 rounded-full bg-primary/15 border border-primary/30 text-primary text-[10px] uppercase">
+        <Badge
+          variant="secondary"
+          className="absolute top-4 right-4 rounded-full border-primary/20 text-primary"
+        >
           Featured
         </Badge>
       )}
@@ -860,7 +863,7 @@ function ProjectCard({ project }: { project: Project }) {
       {/* STACK */}
       <div className="flex flex-wrap gap-2 mb-5 mt-auto">
         {stack.map((t) => (
-          <Badge key={t} className="rounded-full bg-primary/10 border border-primary/20 text-xs">
+          <Badge key={t} variant="secondary" className="rounded-full border-primary/10">
             {t}
           </Badge>
         ))}
