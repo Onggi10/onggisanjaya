@@ -1,5 +1,6 @@
 import { useMemo, useState, useCallback, useEffect } from "react";
 import { createFileRoute } from "@tanstack/react-router";
+import { ModeToggle } from "@/components/mode-toggle";
 import profileImg from "@/assets/profile.jpeg";
 import DevportalImg from "@/assets/projects/Devportal BRI.png";
 import WeddingImg from "@/assets/projects/Wedding Invitation.png";
@@ -227,6 +228,8 @@ function Portfolio() {
                 <Download className="size-4" /> CV
               </a>
             </Button>
+
+            <ModeToggle />
 
             {/* Mobile menu */}
             <div className="md:hidden">
