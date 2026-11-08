@@ -53,7 +53,7 @@ type Project = {
 const projects: Project[] = [
   {
     title: "BRIAPI Dashboard",
-    role: "Frontend Developer · PT Bank Rakyat Indonesia",
+    role: "Frontend Developer · PT Bank Rakyat Indonesia Tbk",
     period: "Sep 2022 – Sep 2025",
     description:
       "Dashboard web internal untuk produk digital perbankan BRI yang digunakan oleh tim partner & internal untuk monitoring transaksi, pengelolaan API key, serta laporan finansial real-time.",
@@ -70,24 +70,24 @@ const projects: Project[] = [
   },
   {
     title: "Neo Production",
-    role: "full Stack Developer · Neo Production",
-    period: "Aug 2024 – Sep 2025",
+    role: "Full Stack Developer · Neo Production",
+    period: "Aug 2025 – Oct 2025",
     description:
       "Situs resmi perusahaan event organizer & paket wisata di Indonesia. Website company profile yang menampilkan layanan, portofolio event, serta katalog paket wisata dengan fokus pada konversi & SEO.",
     highlights: [
-      "Desain responsif mobile-first untuk pengalaman optimal di semua device",
-      "Optimasi SEO on-page dengan meta tags dinamis & structured data",
-      "Page speed tinggi via image optimization & static generation",
-      "Komponen reusable untuk maintenance & scalability jangka panjang",
+      "Mengembangkan website company profile berbasis React.js & Next.js",
+      "Membangun UI yang responsif, user-friendly, dan SEO-friendly",
+      "Mengintegrasikan konten dinamis dan API untuk kebutuhan bisnis event organizer",
+      "Menjaga konsistensi visual sesuai branding perusahaan",
     ],
-    stack: ["Next.js", "React.js", "Tailwind CSS", "SEO", "Responsive Design"],
+    stack: ["Next.js", "React.js", "Tailwind CSS", "SEO", "RESTful API", "Responsive Design"],
     demo: "https://neoproduction.co.id",
     image: NeoProductionImg,
     featured: true,
   },
   {
     title: "Wedding Invitation — Personal Project",
-    role: "full Stack Developer",
+    role: "Full Stack Developer",
     period: "Aug 2024 – Sep 2025",
     description:
       "Aplikasi web untuk membuat undangan pernikahan secara online dengan desain yang menarik dan fitur interaktif.",
@@ -105,7 +105,7 @@ const projects: Project[] = [
   },
   {
     title: "Developers BRI",
-    role: "frontend Developer & Drupal CMS Developer · PT Bank Rakyat Indonesia",
+    role: "Frontend Developer & Drupal CMS Developer · PT Bank Rakyat Indonesia Tbk",
     period: "2023 – 2024",
     description:
       "Pengembangan & kustomisasi Content Management System berbasis Drupal untuk kebutuhan publikasi internal perusahaan, termasuk modul custom & integrasi dengan sistem internal.",
@@ -152,20 +152,77 @@ const projects: Project[] = [
   },
 ];
 
+type Experience = {
+  role: string;
+  company: string;
+  location: string;
+  period: string;
+  highlights: string[];
+  additional?: string[];
+};
+
+const experiences: Experience[] = [
+  {
+    role: "Full Stack Developer",
+    company: "PT Adira Dinamika Multi Finance Tbk",
+    location: "Jakarta, Indonesia",
+    period: "Mei 2026 – Okt 2026",
+    highlights: [
+      "Mengembangkan dan memelihara aplikasi mobile cross-platform (Android & iOS) menggunakan React Native.",
+      "Membangun antarmuka pengguna yang responsif, konsisten, dan sesuai desain UI/UX dari Figma.",
+      "Mengimplementasikan navigasi aplikasi, reusable components, serta state management menggunakan Xstate.",
+      "Mengintegrasikan dan mengonsumsi RESTful API untuk berbagai fitur aplikasi termasuk autentikasi.",
+      "Melakukan data processing, validasi, serta error handling untuk memastikan performa dan stabilitas aplikasi.",
+      "Mengoptimalkan performa aplikasi melalui code splitting, lazy loading, caching, dan refactoring kode.",
+      "Mengembangkan dan memelihara backend menggunakan Node.js untuk mendukung kebutuhan aplikasi mobile.",
+      "Melakukan pengujian API menggunakan Postman serta validasi data menggunakan SQL Server.",
+      "Mengikuti proses CI/CD untuk build, testing, dan deployment aplikasi mobile.",
+      "Melakukan bug fixing, code review, serta continuous improvement untuk meningkatkan kualitas aplikasi.",
+    ],
+    additional: [
+      "Mendukung pengembangan aplikasi web internal menggunakan React/Next.js.",
+      "Membantu implementasi fitur backend tambahan sesuai kebutuhan project.",
+      "Melakukan API testing dan validasi data menggunakan Postman dan SQL Server.",
+    ],
+  },
+  {
+    role: "Frontend Developer",
+    company: "PT Bank Rakyat Indonesia Tbk",
+    location: "Jakarta, Indonesia",
+    period: "Sep 2022 – Sep 2025",
+    highlights: [
+      "Mengembangkan dan memelihara dashboard web berbasis Next.js dan React.js untuk produk digital perbankan (BRIAPI Dashboard).",
+      "Mengimplementasikan UI/UX dengan tingkat akurasi visual tinggi sesuai design system dan Figma dari tim UI/UX.",
+      "Mengelola state aplikasi menggunakan Redux dan Redux Toolkit untuk data yang kompleks dan dinamis.",
+      "Mengintegrasikan RESTful API dari backend service untuk menampilkan data finansial secara real-time dan aman.",
+      "Melakukan data processing & error handling pada response API untuk memastikan stabilitas aplikasi.",
+      "Menerapkan best practice performance seperti code splitting, reusable components, dan optimasi rendering.",
+      "Berkolaborasi aktif dengan Backend Engineer, UI/UX Designer, QA, dan DevOps dalam pengembangan produk.",
+      "Melakukan bug fixing, refactoring code, dan peningkatan maintainability pada aplikasi existing.",
+      "Mengikuti proses CI/CD menggunakan Jenkins untuk build, test, dan deployment aplikasi frontend berbasis Next.js.",
+    ],
+    additional: [
+      "Mengembangkan layanan pendukung menggunakan Drupal CMS.",
+      "Berkontribusi pada pengembangan backend menggunakan Golang (Gin & Fiber) untuk kebutuhan internal.",
+      "Melakukan API testing dan validasi data menggunakan Postman dan SQL Server.",
+    ],
+  },
+];
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Onggi Sanjaya — Frontend Developer Portfolio" },
+      { title: "Onggi Sanjaya — Full Stack Developer Portfolio" },
       {
         name: "description",
         content:
-          "Frontend Developer dengan 2+ tahun pengalaman membangun aplikasi web enterprise menggunakan React.js, Next.js, dan TypeScript.",
+          "Full Stack Developer dengan 4 tahun pengalaman membangun aplikasi mobile & web menggunakan React Native, React.js, Next.js, Golang, dan Node.js.",
       },
-      { property: "og:title", content: "Onggi Sanjaya — Frontend Developer" },
+      { property: "og:title", content: "Onggi Sanjaya — Full Stack Developer" },
       {
         property: "og:description",
         content:
-          "Portofolio Onggi Sanjaya — Frontend Developer berpengalaman di enterprise banking & web product.",
+          "Portofolio Onggi Sanjaya — Full Stack Developer berpengalaman di enterprise banking, finance & web product.",
       },
     ],
     links: [
@@ -179,21 +236,50 @@ export const Route = createFileRoute("/")({
 });
 
 const skills = {
-  Frontend: [
+  "Frontend Development": [
+    "React Native",
     "React.js",
     "Next.js",
-    "TypeScript",
     "Vue.js",
+    "TypeScript",
     "JavaScript",
-    "HTML5",
-    "CSS3",
+    "HTML",
+    "CSS",
     "Responsive Design",
+    "Cross-browser Compatibility",
   ],
-  "State Management": ["Redux", "Redux Toolkit", "Context API"],
-  Backend: ["Golang (Gin & Fiber)", "Drupal CMS", "RESTful API"],
-  Tools: ["Git", "GitHub", "GitLab", "Bitbucket", "Jenkins", "Postman", "Jira"],
+  "Backend Development": ["Golang (Gin & Fiber)", "Node.js", "Drupal CMS", "Docker", "Jenkins"],
+  "State Management": ["Redux", "Redux Toolkit", "Context API", "Xstate"],
+  "Version Control": ["Git", "GitHub", "GitLab", "Bitbucket"],
   Testing: ["Jest", "Enzyme", "Cypress", "Selenium"],
-  Performance: ["Lighthouse", "Web Vitals", "Code Splitting"],
+  "API & Performance": [
+    "RESTful API",
+    "Postman",
+    "SQL Server",
+    "Lighthouse",
+    "Web Vitals",
+    "Code Splitting",
+  ],
+  "Tools & Collaboration": [
+    "npm/yarn",
+    "Jira",
+    "Microsoft Teams",
+    "Google Workspace",
+    "Microsoft Office",
+  ],
+  "Soft Skills": [
+    "Collaboration",
+    "Communication",
+    "Empathy",
+    "Problem-solving",
+    "Critical Thinking",
+    "Creativity",
+    "Attention to Detail",
+    "Adaptability",
+    "Resilience",
+    "Self-motivation",
+    "Time Management",
+  ],
 };
 
 function Portfolio() {
@@ -308,11 +394,13 @@ function Portfolio() {
               </span>
             </h1>
             <p className="text-xl text-muted-foreground max-w-xl leading-relaxed">
-              Frontend Developer dengan{" "}
-              <span className="text-foreground font-semibold">2+ tahun</span> pengalaman membangun
-              aplikasi web berbasis produk di lingkungan enterprise banking. Mahir dalam{" "}
-              <span className="text-primary font-medium">React.js</span>,{" "}
-              <span className="text-primary font-medium">Next.js</span>, dan integrasi RESTful API.
+              Full Stack Developer dengan{" "}
+              <span className="text-foreground font-semibold">4 tahun</span> pengalaman membangun
+              aplikasi mobile & web, dengan fokus utama di{" "}
+              <span className="text-primary font-medium">React Native</span>,{" "}
+              <span className="text-primary font-medium">React.js</span>, dan{" "}
+              <span className="text-primary font-medium">Next.js</span>. Terbiasa mengintegrasikan
+              RESTful API serta membangun layanan backend dengan Golang & Node.js.
             </p>
             <div className="flex flex-wrap gap-3 pt-2">
               <Button asChild size="lg" className="rounded-full shadow-[var(--shadow-glow)]">
@@ -337,7 +425,13 @@ function Portfolio() {
               >
                 <Phone className="size-5" />
               </a>
-              <a href="#" className="hover:text-primary transition-colors">
+              <a
+                href="https://www.linkedin.com/in/onggi-sanjaya/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-primary transition-colors"
+                aria-label="LinkedIn Onggi Sanjaya"
+              >
                 <Linkedin className="size-5" />
               </a>
               <a href="#" className="hover:text-primary transition-colors">
@@ -364,8 +458,8 @@ function Portfolio() {
           <div className="grid md:grid-cols-3 gap-6 mt-12">
             <FeatureCard
               icon={<Code2 className="size-6" />}
-              title="Product-focused"
-              text="Membangun aplikasi web yang dipakai langsung pengguna di lingkungan enterprise banking."
+              title="Full Stack Developer"
+              text="Membangun aplikasi mobile & web end-to-end, dari UI React Native / React.js hingga layanan backend Golang & Node.js."
             />
             <FeatureCard
               icon={<Layers className="size-6" />}
@@ -375,7 +469,7 @@ function Portfolio() {
             <FeatureCard
               icon={<Zap className="size-6" />}
               title="Performance-driven"
-              text="Code splitting, reusable components, dan optimasi rendering untuk pengalaman cepat."
+              text="Code splitting, lazy loading, caching, dan optimasi rendering untuk pengalaman yang cepat."
             />
           </div>
 
@@ -394,46 +488,54 @@ function Portfolio() {
       <section id="experience" className="py-24 px-6">
         <div className="max-w-6xl mx-auto">
           <SectionHeader eyebrow="Experience" title="Where I've worked" />
-          <Card
-            className="mt-12 p-8 md:p-10 border-border/60"
-            style={{ background: "var(--gradient-card)" }}
-          >
-            <div className="flex flex-wrap items-start justify-between gap-4 mb-6">
-              <div>
-                <div className="flex items-center gap-3">
-                  <div className="size-12 rounded-xl bg-primary/10 border border-primary/20 grid place-items-center">
-                    <Briefcase className="size-6 text-primary" />
+          <div className="space-y-6 mt-12">
+            {experiences.map((exp) => (
+              <Card
+                key={`${exp.company}-${exp.period}`}
+                className="p-8 md:p-10 border-border/60"
+                style={{ background: "var(--gradient-card)" }}
+              >
+                <div className="flex flex-wrap items-start justify-between gap-4 mb-6">
+                  <div>
+                    <div className="flex items-center gap-3">
+                      <div className="size-12 rounded-xl bg-primary/10 border border-primary/20 grid place-items-center">
+                        <Briefcase className="size-6 text-primary" />
+                      </div>
+                      <div className="min-w-0">
+                        <h3 className="text-xl font-bold break-words">{exp.role}</h3>
+                        <p className="text-primary font-medium break-words">{exp.company}</p>
+                      </div>
+                    </div>
                   </div>
-                  <div className="min-w-0">
-                    <h3 className="text-xl font-bold break-words">Frontend Developer</h3>
-                    <p className="text-primary font-medium break-words">
-                      PT Bank Rakyat Indonesia (BRI)
-                    </p>
+                  <div className="text-right text-sm text-muted-foreground break-words">
+                    <p>{exp.period}</p>
+                    <p>{exp.location}</p>
                   </div>
                 </div>
-              </div>
-              <div className="text-right text-sm text-muted-foreground break-words">
-                <p>Sep 2022 – Sep 2025</p>
-                <p>Jakarta, Indonesia</p>
-              </div>
-            </div>
-            <ul className="space-y-3 text-muted-foreground">
-              {[
-                "Mengembangkan & memelihara dashboard web Next.js / React.js untuk produk digital perbankan (BRIAPI Dashboard).",
-                "Mengimplementasi UI/UX dengan akurasi visual tinggi sesuai design system & Figma.",
-                "Mengelola state aplikasi dengan Redux & Redux Toolkit untuk data kompleks.",
-                "Integrasi RESTful API untuk data finansial real-time, dengan error handling yang stabil.",
-                "Menerapkan best practice performance: code splitting, reusable components, optimasi rendering.",
-                "Berkolaborasi dengan Backend, UI/UX, QA, dan DevOps. CI/CD via Jenkins.",
-                "Tambahan: pengembangan Drupal CMS & backend Golang (Gin & Fiber) untuk kebutuhan internal.",
-              ].map((item) => (
-                <li key={item} className="flex gap-3">
-                  <span className="text-primary mt-2 size-1.5 rounded-full bg-primary shrink-0" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </Card>
+                <ul className="space-y-3 text-muted-foreground">
+                  {exp.highlights.map((item) => (
+                    <li key={item} className="flex gap-3">
+                      <span className="text-primary mt-2 size-1.5 rounded-full bg-primary shrink-0" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+                {exp.additional && exp.additional.length > 0 && (
+                  <div className="mt-6 pt-5 border-t border-border/60">
+                    <h4 className="font-semibold text-sm mb-3">Additional Responsibilities</h4>
+                    <ul className="space-y-2 text-sm text-muted-foreground">
+                      {exp.additional.map((item) => (
+                        <li key={item} className="flex gap-3">
+                          <span className="text-primary mt-2 size-1.5 rounded-full bg-primary shrink-0" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </Card>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -480,14 +582,24 @@ function Portfolio() {
             </h3>
             <div className="space-y-5">
               <div>
+                <p className="text-xs uppercase tracking-wider text-muted-foreground mb-1">
+                  Formal Education
+                </p>
                 <p className="font-semibold">Universitas Terbuka</p>
-                <p className="text-sm text-muted-foreground">Teknologi Informasi · 2024 – 2025</p>
+                <p className="text-sm text-muted-foreground">
+                  S1 Teknologi Informatika · Mar 2021 – 2024
+                </p>
+                <p className="text-sm text-muted-foreground">Kota Bogor, Indonesia</p>
               </div>
               <div>
+                <p className="text-xs uppercase tracking-wider text-muted-foreground mb-1">
+                  Informal Education
+                </p>
                 <p className="font-semibold">Cronos Studio Indonesia</p>
                 <p className="text-sm text-muted-foreground">
-                  Bootcamp Fundamental Frontend Engineer · 2021 – 2022
+                  Bootcamp Fundamental Frontend Engineer · Aug 2021 – Aug 2022
                 </p>
+                <p className="text-sm text-muted-foreground">Depok, Indonesia</p>
               </div>
             </div>
           </Card>
@@ -502,11 +614,11 @@ function Portfolio() {
               </li>
               <li className="flex gap-3">
                 <span className="size-1.5 mt-2 rounded-full bg-primary shrink-0" /> Dicoding ·
-                Frontend
+                FrontEnd
               </li>
               <li className="flex gap-3">
                 <span className="size-1.5 mt-2 rounded-full bg-primary shrink-0" /> Dicoding · React
-                JS
+                Js
               </li>
             </ul>
             <div className="mt-8 pt-6 border-t border-border/60">
@@ -665,8 +777,8 @@ function ProjectsSection() {
       <div className="max-w-6xl mx-auto">
         <SectionHeader eyebrow="Projects" title="Selected work" />
         <p className="text-center text-muted-foreground mt-4 max-w-2xl mx-auto">
-          Beberapa proyek pilihan yang merepresentasikan perjalanan saya sebagai Frontend Developer
-          di lingkungan enterprise & product.
+          Beberapa proyek pilihan yang merepresentasikan perjalanan saya sebagai Full Stack
+          Developer di lingkungan enterprise & product.
         </p>
 
         <div
